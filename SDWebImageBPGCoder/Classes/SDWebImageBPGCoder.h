@@ -2,7 +2,7 @@
 //  SDWebImageBPGCoder.h
 //  SDWebImage-BPGCoder
 //
-//  Created by lizhuoli on 2017/10/26.
+//  Created by DreamPiggy on 2017/10/26.
 //
 
 #import <Foundation/Foundation.h>

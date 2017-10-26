@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		23CC995E938AB20B65A269A6 /* Pods-SDWebImageBPGCoder_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageBPGCoder_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageBPGCoder_Example/Pods-SDWebImageBPGCoder_Example.release.xcconfig"; sourceTree = "<group>"; };
-		4FCEEAB84CC010EA0B04CFBD /* SDWebImageBPGCoder.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SDWebImageBPGCoder.podspec; path = ../SDWebImageBPGCoder.podspec; sourceTree = "<group>"; };
+		4FCEEAB84CC010EA0B04CFBD /* SDWebImageBPGCoder.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SDWebImageBPGCoder.podspec; path = ../SDWebImageBPGCoder.podspec; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* SDWebImageBPGCoder_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDWebImageBPGCoder_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,12 +60,12 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		6D3EAD0903E4090ABC44056E /* Pods_SDWebImageBPGCoder_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageBPGCoder_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7FF12E4ABF53B0B9443D0393 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		7FF12E4ABF53B0B9443D0393 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9093DEDF41E78F54FD5210D9 /* Pods-SDWebImageBPGCoder_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageBPGCoder_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageBPGCoder_Tests/Pods-SDWebImageBPGCoder_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1549F01DE33277F8229DA35 /* Pods_SDWebImageBPGCoder_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDWebImageBPGCoder_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEAE0F6B3B7BB49015E77988 /* Pods-SDWebImageBPGCoder_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageBPGCoder_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageBPGCoder_Example/Pods-SDWebImageBPGCoder_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		FA47C85FED2BCBBDA3FEA3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		FA47C85FED2BCBBDA3FEA3F5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FBB5CCCBE717DA4C5805C78B /* Pods-SDWebImageBPGCoder_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDWebImageBPGCoder_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDWebImageBPGCoder_Tests/Pods-SDWebImageBPGCoder_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

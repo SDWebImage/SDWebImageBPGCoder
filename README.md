@@ -42,6 +42,10 @@ The images are from [BPG official site](https://bellard.org/bpg/)
 
 DreamPiggy
 
+## Thanks
+
+[HCImage-BPG](https://github.com/chuganzy/HCImage-BPG)
+
 ## License
 
 SDWebImageBPGCoder is available under the MIT license. See the LICENSE file for more info.

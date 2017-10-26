@@ -2,11 +2,15 @@
 //  SDWebImageBPGCoder.m
 //  SDWebImage-BPGCoder
 //
-//  Created by lizhuoli on 2017/10/26.
+//  Created by DreamPiggy on 2017/10/26.
 //
 
 #import "SDWebImageBPGCoder.h"
+#if __has_include(<HCImage_BPG/HCImage+BPG.h>)
+#import <HCImage_BPG/HCImage+BPG.h>
+#else
 #import "HCImage+BPG.h"
+#endif
 
 #define SD_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
 
@@ -28,7 +32,6 @@
     return [[self class] isBPGFormatForData:data];
 }
 
-
 - (UIImage *)decodedImageWithData:(NSData *)data
 {
     if (!data) {
@@ -44,7 +47,8 @@
 }
 
 #pragma mark - Progressive Decode
-- (BOOL)canIncrementallyDecodeFromData:(nullable NSData *)data {
+- (BOOL)canIncrementallyDecodeFromData:(nullable NSData *)data
+{
     return [[self class] isBPGFormatForData:data];
 }
 
@@ -71,7 +75,7 @@
         return NO;
     }
     uint32_t magic4;
-    [data getBytes:&magic4 length:4]; // 4 Bytes Magic Code for most file format. PNG & WebP is 8
+    [data getBytes:&magic4 length:4]; // 4 Bytes Magic Code for most file format.
     switch (magic4) {
         case SD_FOUR_CC('B', 'P', 'G', 0xFB): { // BPG
             return YES;

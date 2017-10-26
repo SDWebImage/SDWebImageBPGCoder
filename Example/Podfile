@@ -8,6 +8,6 @@ target 'SDWebImageBPGCoder_Example' do
     inherit! :search_paths
 
     pod 'Specta'
-  pod 'Expecta'
+    pod 'Expecta'
   end
 end
