@@ -1,0 +1,13 @@
+use_frameworks!
+
+target 'SDWebImageBPGCoder_Example' do
+  pod 'SDWebImageBPGCoder', :path => '../'
+  pod 'SDWebImage/Core',  git:'git@github.com:rs/SDWebImage.git', :branch => 'master'
+
+  target 'SDWebImageBPGCoder_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+  pod 'Expecta'
+  end
+end
