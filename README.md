@@ -11,7 +11,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-iOS 7 or macOS 10.8
+iOS 8 or macOS 10.10
 
 ## Installation
 
@@ -32,9 +32,15 @@ NSURL *BPGURL;
 [imageView sd_setImageWithURL:BPGURL];
 ```
 
+## Screenshot
+
+<img src="https://raw.githubusercontent.com/dreampiggy/SDWebImageBPGCoder/master/Example/Screenshot/BPGDemo.png" width="300" />
+
+The images are from [BPG official site](https://bellard.org/bpg/)
+
 ## Author
 
-dreampiggy, lizhuoli@bytedance.com
+DreamPiggy
 
 ## License
 
