@@ -4,7 +4,7 @@ PODS:
   - SDWebImage/Core (4.2.0)
   - SDWebImageBPGCoder (0.1.0):
     - HCImage+BPG
-    - SDWebImage/Core
+    - SDWebImage/Core (~> 4.2)
   - Specta (1.0.7)
 
 DEPENDENCIES:
@@ -29,7 +29,7 @@ SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   HCImage+BPG: 13bf0aa4e39e4d2cf3437aaacea895f271a83100
   SDWebImage: b1189fd85365c18434270a11a5cad13a1e848d53
-  SDWebImageBPGCoder: e43a706ab55878829aee43822966bc87278ea1c8
+  SDWebImageBPGCoder: fc4e8288d5d4e66581c2578113a3a84656c64a46
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: ec16a7237cf7f3065913c0b34434b68788f225cc

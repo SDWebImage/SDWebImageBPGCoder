@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
   s.osx.deployment_target = '10.10'
 
   s.source_files = 'SDWebImageBPGCoder/Classes/**/*'
-  s.dependency 'SDWebImage/Core'
+  s.dependency 'SDWebImage/Core', '~> 4.2'
   s.dependency 'HCImage+BPG'
   
   # s.resource_bundles = {
