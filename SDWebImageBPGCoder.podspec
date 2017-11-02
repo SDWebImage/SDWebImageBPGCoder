@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SDWebImageBPGCoder'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of SDWebImageBPGCoder.'
+  s.summary          = 'BPG decoder for SDWebImage plugin coder.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
   s.osx.deployment_target = '10.10'
 
   s.source_files = 'SDWebImageBPGCoder/Classes/**/*'
-  s.dependency 'SDWebImage/Core', '~> 4.2'
+  s.dependency 'SDWebImage/Core', '>= 4.2'
   s.dependency 'HCImage+BPG'
   
   # s.resource_bundles = {
