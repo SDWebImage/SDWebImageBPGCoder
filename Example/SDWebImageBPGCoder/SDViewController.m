@@ -22,7 +22,7 @@
     
     SDWebImageBPGCoder *BPGCoder = [SDWebImageBPGCoder sharedCoder];
     [[SDImageCodersManager sharedManager] addCoder:BPGCoder];
-    NSURL *staticBPGURL = [NSURL URLWithString:@"https://bellard.org/bpg/003.bpg"];
+    NSURL *staticBPGURL = [NSURL URLWithString:@"https://uc8755e25430dc6bccf40320efe8.dl.dropboxusercontent.com/cd/0/get/AMJ3W0LvDVmwTkd48zje8bfP3tXPcT-P-y5Ni7CAuVJD3pcnEJLR-RLhasMY-Rk-bmGYB94nkQQN_HbTTpsRkSb6PcAV1eI-ZwkaEwgnunrAI6OpMTPGi-7lNOPtPaoQDlBI-6PPmpuC8W9x0uBz8qqTp-vk8-jTKp1FIXthk11CkhWefxdOn3z6QhZ_wafO0es/file?dl=1"];
     NSURL *animatedBPGURL = [NSURL URLWithString:@"https://bellard.org/bpg/cinemagraph-6.bpg"];
     
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
@@ -33,7 +33,7 @@
     [self.view addSubview:imageView1];
     [self.view addSubview:imageView2];
     
-    [imageView1 sd_setImageWithURL:staticBPGURL placeholderImage:nil options:SDWebImageProgressiveLoad completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [imageView1 sd_setImageWithURL:staticBPGURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"Static BPG load success");
         }

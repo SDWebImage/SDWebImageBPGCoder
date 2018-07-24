@@ -84,25 +84,34 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     BOOL hasAlpha = info.has_alpha;
     int loopCount = info.loop_count;
     BPGDecoderOutputFormat format = hasAlpha ? BPG_OUTPUT_FORMAT_RGBA32 : BPG_OUTPUT_FORMAT_RGB24;
+    // Check first frame
+    result = bpg_decoder_start(context, format);
+    if (result < 0) {
+        bpg_decoder_close(context);
+        return nil;
+    }
+    
     NSMutableArray<SDImageFrame *> *frames = [NSMutableArray array];
     
-    // loop through all frames
-    while (bpg_decoder_start(context, format) >= 0) {
-        CGImageRef imageRef = [self sd_createBPGImageWithContext:context];
-        if (!imageRef) {
-            continue;
+    do {
+        @autoreleasepool {
+            CGImageRef imageRef = [self sd_createBPGImageWithContext:context];
+            if (!imageRef) {
+                continue;
+            }
+    #if SD_UIKIT || SD_WATCH
+            UIImage *image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:UIImageOrientationUp];
+    #else
+            UIImage *image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:kCGImagePropertyOrientationUp];
+    #endif
+            CGImageRelease(imageRef);
+            
+            NSTimeInterval duration = [self sd_frameDurationWithContext:context];
+            SDImageFrame *frame = [SDImageFrame frameWithImage:image duration:duration];
+            [frames addObject:frame];
         }
-#if SD_UIKIT || SD_WATCH
-        UIImage *image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:UIImageOrientationUp];
-#else
-        UIImage *image = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:kCGImagePropertyOrientationUp];
-#endif
-        CGImageRelease(imageRef);
-        
-        NSTimeInterval duration = [self sd_frameDurationWithContext:context];
-        SDImageFrame *frame = [SDImageFrame frameWithImage:image duration:duration];
-        [frames addObject:frame];
-    }
+    } while (bpg_decoder_start(context, format) >= 0);
+    
     bpg_decoder_close(context);
     
     UIImage *animatedImage = [SDImageCoderHelper animatedImageWithFrames:frames];
