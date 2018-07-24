@@ -7,8 +7,7 @@
 //
 
 #import "SDViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <SDWebImage/SDWebImageCodersManager.h>
+#import <SDWebImage/SDWebImage.h>
 #import <SDWebImageBPGCoder/SDWebImageBPGCoder.h>
 
 @interface SDViewController ()
@@ -22,7 +21,7 @@
     [super viewDidLoad];
     
     SDWebImageBPGCoder *BPGCoder = [SDWebImageBPGCoder sharedCoder];
-    [[SDWebImageCodersManager sharedInstance] addCoder:BPGCoder];
+    [[SDImageCodersManager sharedManager] addCoder:BPGCoder];
     NSURL *staticBPGURL = [NSURL URLWithString:@"https://bellard.org/bpg/003.bpg"];
     NSURL *animatedBPGURL = [NSURL URLWithString:@"https://bellard.org/bpg/cinemagraph-6.bpg"];
     
@@ -34,7 +33,7 @@
     [self.view addSubview:imageView1];
     [self.view addSubview:imageView2];
     
-    [imageView1 sd_setImageWithURL:staticBPGURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    [imageView1 sd_setImageWithURL:staticBPGURL placeholderImage:nil options:SDWebImageProgressiveLoad completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"Static BPG load success");
         }

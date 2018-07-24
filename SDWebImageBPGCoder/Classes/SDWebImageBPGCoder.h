@@ -5,11 +5,12 @@
 //  Created by DreamPiggy on 2017/10/26.
 //
 
-#import <Foundation/Foundation.h>
-#import <SDWebImage/SDWebImageCoder.h>
+#import <SDWebImage/SDWebImage.h>
 
-@interface SDWebImageBPGCoder : NSObject <SDWebImageProgressiveCoder>
+static const SDImageFormat SDImageFormatBPG = 11;
 
-+ (nonnull instancetype)sharedCoder;
+@interface SDWebImageBPGCoder : NSObject <SDImageCoder>
+
+@property (nonatomic, class, readonly, nonnull) SDWebImageBPGCoder *sharedCoder;
 
 @end
