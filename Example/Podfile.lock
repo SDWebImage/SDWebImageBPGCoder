@@ -1,62 +1,25 @@
 PODS:
   - Expecta (1.0.6)
-  - libwebp (0.6.1):
-    - libwebp/core (= 0.6.1)
-    - libwebp/dec (= 0.6.1)
-    - libwebp/demux (= 0.6.1)
-    - libwebp/dsp (= 0.6.1)
-    - libwebp/enc (= 0.6.1)
-    - libwebp/mux (= 0.6.1)
-    - libwebp/utils (= 0.6.1)
-    - libwebp/webp (= 0.6.1)
-  - libwebp/core (0.6.1):
-    - libwebp/webp
-  - libwebp/dec (0.6.1):
-    - libwebp/core
-  - libwebp/demux (0.6.1):
-    - libwebp/core
-  - libwebp/dsp (0.6.1):
-    - libwebp/core
-  - libwebp/enc (0.6.1):
-    - libwebp/core
-  - libwebp/mux (0.6.1):
-    - libwebp/core
-  - libwebp/utils (0.6.1):
-    - libwebp/core
-  - libwebp/webp (0.6.1)
-  - SDWebImage/Core (5.0.0-beta)
-  - SDWebImage/WebP (5.0.0-beta):
-    - libwebp (~> 0.5)
-    - SDWebImage/Core
-  - SDWebImageBPGCoder (0.1.0):
-    - SDWebImage/Core (>= 5.0.0-beta)
+  - SDWebImage/Core (5.0.0-beta2)
+  - SDWebImageBPGCoder (0.2.0):
+    - SDWebImage/Core (>= 5.0.0-beta2)
   - Specta (1.0.7)
 
 DEPENDENCIES:
   - Expecta
-  - SDWebImage/WebP (from `https://github.com/rs/SDWebImage.git`, branch `5.x`)
   - SDWebImageBPGCoder (from `../`)
   - Specta
 
 EXTERNAL SOURCES:
-  SDWebImage:
-    :branch: 5.x
-    :git: https://github.com/rs/SDWebImage.git
   SDWebImageBPGCoder:
     :path: ../
 
-CHECKOUT OPTIONS:
-  SDWebImage:
-    :commit: 919751f2de55ccc4f3d5361d7d78d7a4d10ff4a8
-    :git: https://github.com/rs/SDWebImage.git
-
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  libwebp: 0f01098c6c17175391af621b2f14150f3ca16e16
-  SDWebImage: 55c787b164fabe07f2a4d5307f6e1be7960fb9be
-  SDWebImageBPGCoder: f70eaf503c8add357a23e7333a113f7483c0cf46
+  SDWebImage: 8e4aaf5805e954ad426702adf5a8c012a7f581d1
+  SDWebImageBPGCoder: 5d944cc945509e097a5b7bc564e7ed1d8014e696
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
-PODFILE CHECKSUM: 298fedabc4a0c3b38be87dfba962d7b2ff493091
+PODFILE CHECKSUM: fd53aea563c6f2d11e877e91e372db7ed344f907
 
 COCOAPODS: 1.4.0

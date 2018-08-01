@@ -27,12 +27,24 @@ pod 'SDWebImageBPGCoder'
 
 ## Usage
 
+To use BPG coder, you should firstly add the `SDWebImageBPGCoder` to the coders manager. Then you can call the View Category method to start load BPG images.
+
++ Objective-C
+
 ```objective-c
 SDWebImageBPGCoder *BPGCoder = [SDWebImageBPGCoder sharedCoder];
-[[SDWebImageCodersManager sharedInstance] addCoder:BPGCoder];
+[[SDImageCodersManager sharedManager] addCoder:BPGCoder];
 UIImageView *imageView;
-NSURL *BPGURL;
-[imageView sd_setImageWithURL:BPGURL];
+[imageView sd_setImageWithURL:url];
+```
+
++ Swift
+
+```swift
+let BPGCoder = SDWebImageBPGCoder.shared
+SDImageCodersManager.shared.addCoder(BPGCoder)
+let imageView: UIImageView
+imageView.sd_setImage(with: url)
 ```
 
 ## Screenshot
@@ -52,3 +64,5 @@ DreamPiggy
 ## License
 
 SDWebImageBPGCoder is available under the MIT license. See the LICENSE file for more info.
+
+

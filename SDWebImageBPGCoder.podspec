@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImageBPGCoder'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'BPG decoder for SDWebImage plugin coder.'
 
 # This description is used to generate tags and improve search results.
@@ -33,5 +33,5 @@ TODO: Add long description of the pod here.
   s.private_header_files = 'Vendor/libbpg/include/libbpg.h'
   s.osx.vendored_libraries = 'Vendor/libbpg/lib/mac/libbpg.a'
   s.ios.vendored_libraries = 'Vendor/libbpg/lib/ios/libbpg.a'
-  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta'
+  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta2'
 end
