@@ -1,6 +1,6 @@
 # SDWebImageBPGCoder
 
-[![CI Status](http://img.shields.io/travis/dreampiggy/SDWebImageBPGCoder.svg?style=flat)](https://travis-ci.org/dreampiggy/SDWebImageBPGCoder)
+[![CI Status](http://img.shields.io/travis/SDWebImage/SDWebImageBPGCoder.svg?style=flat)](https://travis-ci.org/SDWebImage/SDWebImageBPGCoder)
 [![Version](https://img.shields.io/cocoapods/v/SDWebImageBPGCoder.svg?style=flat)](http://cocoapods.org/pods/SDWebImageBPGCoder)
 [![License](https://img.shields.io/cocoapods/l/SDWebImageBPGCoder.svg?style=flat)](http://cocoapods.org/pods/SDWebImageBPGCoder)
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImageBPGCoder.svg?style=flat)](http://cocoapods.org/pods/SDWebImageBPGCoder)
