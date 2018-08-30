@@ -1,31 +1,39 @@
 PODS:
   - Expecta (1.0.6)
-  - SDWebImage/Core (5.0.0-beta2)
+  - SDWebImage/Core (5.0.0-beta3)
   - SDWebImageBPGCoder (0.2.0):
     - SDWebImage/Core (>= 5.0.0-beta2)
   - Specta (1.0.7)
 
 DEPENDENCIES:
   - Expecta
+  - SDWebImage/Core (from `https://github.com/rs/SDWebImage.git`, branch `5.x`)
   - SDWebImageBPGCoder (from `../`)
   - Specta
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Expecta
-    - SDWebImage
     - Specta
 
 EXTERNAL SOURCES:
+  SDWebImage:
+    :branch: 5.x
+    :git: https://github.com/rs/SDWebImage.git
   SDWebImageBPGCoder:
     :path: "../"
 
+CHECKOUT OPTIONS:
+  SDWebImage:
+    :commit: 1ed0b8cfe86066ea28093406fcd859efd40c9d96
+    :git: https://github.com/rs/SDWebImage.git
+
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  SDWebImage: 8e4aaf5805e954ad426702adf5a8c012a7f581d1
-  SDWebImageBPGCoder: 5d944cc945509e097a5b7bc564e7ed1d8014e696
+  SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
+  SDWebImageBPGCoder: 69c7828d48d1bcbc675c7bd9076485d55f7f54ba
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
-PODFILE CHECKSUM: cfd17fbbeccee1a0724cea81522093cb795a4c83
+PODFILE CHECKSUM: 73d8f8de93a8fc300c949f565e3e8d1256b96cf3
 
 COCOAPODS: 1.5.3

@@ -1,0 +1,6 @@
+framework module SDWebImageBPGCoder {
+  umbrella header "SDWebImageBPGCoder.h"
+
+  export *
+  module * { export * }
+}

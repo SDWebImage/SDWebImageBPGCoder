@@ -1,11 +1,11 @@
 //
-//  SDWebImageBPGCoder.m
-//  SDWebImage-BPGCoder
+//  SDImageBPGCoder.m
+//  SDWebImageBPGCoder
 //
 //  Created by DreamPiggy on 2017/10/26.
 //
 
-#import "SDWebImageBPGCoder.h"
+#import "SDImageBPGCoder.h"
 #import "libbpg.h"
 
 #define SD_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
@@ -14,13 +14,13 @@ static void FreeImageData(void *info, const void *data, size_t size) {
     free((void *)data);
 }
 
-@implementation SDWebImageBPGCoder
+@implementation SDImageBPGCoder
 
 + (instancetype)sharedCoder {
-    static SDWebImageBPGCoder *coder;
+    static SDImageBPGCoder *coder;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        coder = [[SDWebImageBPGCoder alloc] init];
+        coder = [[SDImageBPGCoder alloc] init];
     });
     return coder;
 }

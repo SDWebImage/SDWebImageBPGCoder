@@ -29,8 +29,9 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
 
-  s.source_files = 'SDWebImageBPGCoder/Classes/**/*', 'Vendor/libbpg/include/libbpg.h'
-  s.private_header_files = 'Vendor/libbpg/include/libbpg.h'
+  s.source_files = 'SDWebImageBPGCoder/Classes/**/*', 'Vendor/libbpg/include/libbpg.h', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h'
+  s.module_map = 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.modulemap'
+  s.public_header_files = 'SDWebImageBPGCoder/Classes/**/*.h', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h'
   s.osx.vendored_libraries = 'Vendor/libbpg/lib/mac/libbpg.a'
   s.ios.vendored_libraries = 'Vendor/libbpg/lib/ios/libbpg.a'
   s.dependency 'SDWebImage/Core', '>= 5.0.0-beta2'
