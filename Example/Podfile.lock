@@ -10,9 +10,15 @@ DEPENDENCIES:
   - SDWebImageBPGCoder (from `../`)
   - Specta
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Expecta
+    - SDWebImage
+    - Specta
+
 EXTERNAL SOURCES:
   SDWebImageBPGCoder:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
@@ -20,6 +26,6 @@ SPEC CHECKSUMS:
   SDWebImageBPGCoder: 5d944cc945509e097a5b7bc564e7ed1d8014e696
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
-PODFILE CHECKSUM: fd53aea563c6f2d11e877e91e372db7ed344f907
+PODFILE CHECKSUM: cfd17fbbeccee1a0724cea81522093cb795a4c83
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
