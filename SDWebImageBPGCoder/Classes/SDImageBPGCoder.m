@@ -66,6 +66,7 @@ static void FreeImageData(void *info, const void *data, size_t size) {
 #else
         UIImage *staticImage = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:kCGImagePropertyOrientationUp];
 #endif
+        staticImage.sd_imageFormat = SDImageFormatBPG;
         CGImageRelease(imageRef);
         return staticImage;
     }

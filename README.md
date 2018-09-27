@@ -32,7 +32,7 @@ To use BPG coder, you should firstly add the `SDWebImageBPGCoder` to the coders 
 + Objective-C
 
 ```objective-c
-SDWebImageBPGCoder *BPGCoder = [SDWebImageBPGCoder sharedCoder];
+SDImageBPGCoder *BPGCoder = [SDImageBPGCoder sharedCoder];
 [[SDImageCodersManager sharedManager] addCoder:BPGCoder];
 UIImageView *imageView;
 [imageView sd_setImageWithURL:url];
@@ -41,7 +41,7 @@ UIImageView *imageView;
 + Swift
 
 ```swift
-let BPGCoder = SDWebImageBPGCoder.shared
+let BPGCoder = SDImageBPGCoder.shared
 SDImageCodersManager.shared.addCoder(BPGCoder)
 let imageView: UIImageView
 imageView.sd_setImage(with: url)
