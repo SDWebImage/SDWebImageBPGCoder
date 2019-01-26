@@ -19,11 +19,21 @@ This is a demo to show to build custom decoder for SDWebImage by embedding third
 
 ## Installation
 
+#### CocoaPods
+
 SDWebImageBPGCoder is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'SDWebImageBPGCoder'
+```
+
+#### Carthage
+
+SDWebImageBPGCoder is available through [Carthage](https://github.com/Carthage/Carthage).
+
+```
+github "SDWebImage/SDWebImageBPGCoder"
 ```
 
 ## Usage
