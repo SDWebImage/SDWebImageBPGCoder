@@ -11,13 +11,14 @@
 		329CE7B121FC96B400A5875B /* SDImageBPGCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 329CE7AE21FC96B400A5875B /* SDImageBPGCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329CE7B421FC96C800A5875B /* SDWebImageBPGCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 329CE7B221FC96C800A5875B /* SDWebImageBPGCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329CE7B821FC97C000A5875B /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 329CE7B721FC97C000A5875B /* SDWebImage.framework */; };
-		329CE7BC21FC983F00A5875B /* libbpg.h in Headers */ = {isa = PBXBuildFile; fileRef = 329CE7BB21FC983F00A5875B /* libbpg.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329CE7BE21FC987200A5875B /* libbpg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 329CE7BD21FC987200A5875B /* libbpg.a */; };
 		329CE7CC21FC9B0900A5875B /* SDImageBPGCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 329CE7AE21FC96B400A5875B /* SDImageBPGCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329CE7CD21FC9B0D00A5875B /* SDImageBPGCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 329CE7AC21FC96B400A5875B /* SDImageBPGCoder.m */; };
 		329CE7CE21FC9B1100A5875B /* SDWebImageBPGCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 329CE7B221FC96C800A5875B /* SDWebImageBPGCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329CE7D021FC9B2700A5875B /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 329CE7CF21FC9B2700A5875B /* SDWebImage.framework */; };
 		329CE7D221FC9B3000A5875B /* libbpg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 329CE7D121FC9B3000A5875B /* libbpg.a */; };
+		32FB33F521FEC288006F34C9 /* libbpg.h in Headers */ = {isa = PBXBuildFile; fileRef = 32FB33F421FEC288006F34C9 /* libbpg.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32FB33F621FEC288006F34C9 /* libbpg.h in Headers */ = {isa = PBXBuildFile; fileRef = 32FB33F421FEC288006F34C9 /* libbpg.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,11 +28,11 @@
 		329CE7B221FC96C800A5875B /* SDWebImageBPGCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDWebImageBPGCoder.h; path = Module/SDWebImageBPGCoder.h; sourceTree = "<group>"; };
 		329CE7B321FC96C800A5875B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Module/Info.plist; sourceTree = "<group>"; };
 		329CE7B721FC97C000A5875B /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
-		329CE7BB21FC983F00A5875B /* libbpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libbpg.h; path = "../../HCImage-BPG/HCImage+BPG/Internal/libbpg/include/libbpg.h"; sourceTree = "<group>"; };
 		329CE7BD21FC987200A5875B /* libbpg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbpg.a; path = Vendor/libbpg/lib/ios/libbpg.a; sourceTree = "<group>"; };
 		329CE7C421FC9AF200A5875B /* SDWebImageBPGCoder_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImageBPGCoder_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		329CE7CF21FC9B2700A5875B /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/Mac/SDWebImage.framework; sourceTree = "<group>"; };
 		329CE7D121FC9B3000A5875B /* libbpg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbpg.a; path = Vendor/libbpg/lib/mac/libbpg.a; sourceTree = "<group>"; };
+		32FB33F421FEC288006F34C9 /* libbpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libbpg.h; path = Vendor/libbpg/include/libbpg.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +81,7 @@
 				329CE7AB21FC96B400A5875B /* Classes */,
 				329CE7B321FC96C800A5875B /* Info.plist */,
 				329CE7B221FC96C800A5875B /* SDWebImageBPGCoder.h */,
-				329CE7BB21FC983F00A5875B /* libbpg.h */,
+				32FB33F421FEC288006F34C9 /* libbpg.h */,
 			);
 			path = SDWebImageBPGCoder;
 			sourceTree = "<group>";
@@ -112,7 +113,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				329CE7BC21FC983F00A5875B /* libbpg.h in Headers */,
+				32FB33F521FEC288006F34C9 /* libbpg.h in Headers */,
 				329CE7B421FC96C800A5875B /* SDWebImageBPGCoder.h in Headers */,
 				329CE7B121FC96B400A5875B /* SDImageBPGCoder.h in Headers */,
 			);
@@ -122,6 +123,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32FB33F621FEC288006F34C9 /* libbpg.h in Headers */,
 				329CE7CE21FC9B1100A5875B /* SDWebImageBPGCoder.h in Headers */,
 				329CE7CC21FC9B0900A5875B /* SDImageBPGCoder.h in Headers */,
 			);
