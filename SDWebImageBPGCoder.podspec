@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SDWebImageBPGCoder'
-  s.version          = '0.2.2'
+  s.version          = '0.3.0'
   s.summary          = 'BPG decoder for SDWebImage plugin coder.'
 
 # This description is used to generate tags and improve search results.

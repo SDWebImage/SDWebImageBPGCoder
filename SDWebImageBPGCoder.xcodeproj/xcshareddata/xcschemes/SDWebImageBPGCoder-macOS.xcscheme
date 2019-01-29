@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "329CE7C321FC9AF200A5875B"
-               BuildableName = "SDWebImageBPGCoder_macOS.framework"
+               BuildableName = "SDWebImageBPGCoder.framework"
                BlueprintName = "SDWebImageBPGCoder-macOS"
                ReferencedContainer = "container:SDWebImageBPGCoder.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "329CE7C321FC9AF200A5875B"
-            BuildableName = "SDWebImageBPGCoder_macOS.framework"
+            BuildableName = "SDWebImageBPGCoder.framework"
             BlueprintName = "SDWebImageBPGCoder-macOS"
             ReferencedContainer = "container:SDWebImageBPGCoder.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "329CE7C321FC9AF200A5875B"
-            BuildableName = "SDWebImageBPGCoder_macOS.framework"
+            BuildableName = "SDWebImageBPGCoder.framework"
             BlueprintName = "SDWebImageBPGCoder-macOS"
             ReferencedContainer = "container:SDWebImageBPGCoder.xcodeproj">
          </BuildableReference>

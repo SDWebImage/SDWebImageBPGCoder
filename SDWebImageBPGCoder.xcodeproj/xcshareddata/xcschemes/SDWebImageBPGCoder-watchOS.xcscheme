@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "329CC14B22006FA0001FB68F"
-               BuildableName = "SDWebImageBPGCoder_watchOS.framework"
+               BuildableName = "SDWebImageBPGCoder.framework"
                BlueprintName = "SDWebImageBPGCoder-watchOS"
                ReferencedContainer = "container:SDWebImageBPGCoder.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "329CC14B22006FA0001FB68F"
-            BuildableName = "SDWebImageBPGCoder_watchOS.framework"
+            BuildableName = "SDWebImageBPGCoder.framework"
             BlueprintName = "SDWebImageBPGCoder-watchOS"
             ReferencedContainer = "container:SDWebImageBPGCoder.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "329CC14B22006FA0001FB68F"
-            BuildableName = "SDWebImageBPGCoder_watchOS.framework"
+            BuildableName = "SDWebImageBPGCoder.framework"
             BlueprintName = "SDWebImageBPGCoder-watchOS"
             ReferencedContainer = "container:SDWebImageBPGCoder.xcodeproj">
          </BuildableReference>

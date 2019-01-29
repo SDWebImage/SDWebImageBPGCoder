@@ -14,8 +14,10 @@ This is a demo to show to build custom decoder for SDWebImage by embedding third
 
 ## Requirements
 
-+ iOS 8
++ iOS 8.0
 + macOS 10.10
++ tvOS 9.0
++ watchOS 2.0
 
 ## Installation
 
@@ -70,7 +72,7 @@ DreamPiggy
 
 ## Thanks
 
-[HCImage-BPG](https://github.com/chuganzy/HCImage-BPG)
+[libbpg](https://github.com/mirrorer/libbpg)
 
 ## License
 

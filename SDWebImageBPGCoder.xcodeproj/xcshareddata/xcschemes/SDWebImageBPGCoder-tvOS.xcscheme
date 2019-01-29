@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "329CC13E22006F96001FB68F"
-               BuildableName = "SDWebImageBPGCoder_tvOS.framework"
+               BuildableName = "SDWebImageBPGCoder.framework"
                BlueprintName = "SDWebImageBPGCoder-tvOS"
                ReferencedContainer = "container:SDWebImageBPGCoder.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "329CC13E22006F96001FB68F"
-            BuildableName = "SDWebImageBPGCoder_tvOS.framework"
+            BuildableName = "SDWebImageBPGCoder.framework"
             BlueprintName = "SDWebImageBPGCoder-tvOS"
             ReferencedContainer = "container:SDWebImageBPGCoder.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "329CC13E22006F96001FB68F"
-            BuildableName = "SDWebImageBPGCoder_tvOS.framework"
+            BuildableName = "SDWebImageBPGCoder.framework"
             BlueprintName = "SDWebImageBPGCoder-tvOS"
             ReferencedContainer = "container:SDWebImageBPGCoder.xcodeproj">
          </BuildableReference>
