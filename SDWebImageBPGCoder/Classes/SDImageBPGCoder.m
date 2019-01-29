@@ -202,9 +202,6 @@ static void FillRGBABufferWithBPGImage(vImage_Buffer *red, vImage_Buffer *green,
         return nil;
     }
     // BPG quality is from [0-51], 0 means the best quality but the biggest size. But we define 1.0 the best qualiy, 0.0 the smallest size.
-    if (quality == 1) {
-        p->lossless = 1;
-    }
     p->qp = (1 - quality) * 51;
     
     NSArray<SDImageFrame *> *frames = [SDImageCoderHelper framesFromAnimatedImage:image];
@@ -326,7 +323,6 @@ static void FillRGBABufferWithBPGImage(vImage_Buffer *red, vImage_Buffer *green,
     if (v_error != kvImageNoError) {
         return nil;
     }
-    size_t destBytesPerRow = width * destFormat.bitsPerPixel / 8;
     vImage_Buffer dest;
     vImageBuffer_Init(&dest, height, width, hasAlpha ? 64 : 48, kvImageNoFlags);
     if (!dest.data) {
