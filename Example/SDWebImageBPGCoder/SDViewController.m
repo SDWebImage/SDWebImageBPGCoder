@@ -36,11 +36,23 @@
     [imageView1 sd_setImageWithURL:staticBPGURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image) {
             NSLog(@"Static BPG load success");
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSData *bpgData = [SDImageBPGCoder.sharedCoder encodedDataWithImage:image format:SDImageFormatBPG options:nil];
+                if (bpgData) {
+                    NSLog(@"Static BPG encode success");
+                }
+            });
         }
     }];
     [imageView2 sd_setImageWithURL:animatedBPGURL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image.images) {
             NSLog(@"Animated BPG load success");
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSData *bpgData = [SDImageBPGCoder.sharedCoder encodedDataWithImage:image format:SDImageFormatBPG options:nil];
+                if (bpgData) {
+                    NSLog(@"Animated BPG encode success");
+                }
+            });
         }
     }];
     

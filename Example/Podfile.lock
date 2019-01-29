@@ -1,13 +1,17 @@
 PODS:
   - Expecta (1.0.6)
   - SDWebImage/Core (5.0.0-beta4)
-  - SDWebImageBPGCoder (0.3.0):
+  - SDWebImageBPGCoder/bpgenc (0.3.0):
+    - SDWebImage/Core (>= 5.0.0-beta4)
+    - SDWebImageBPGCoder/libbpg
+  - SDWebImageBPGCoder/libbpg (0.3.0):
     - SDWebImage/Core (>= 5.0.0-beta4)
   - Specta (1.0.7)
 
 DEPENDENCIES:
   - Expecta
-  - SDWebImageBPGCoder (from `../`)
+  - SDWebImageBPGCoder/bpgenc (from `../`)
+  - SDWebImageBPGCoder/libbpg (from `../`)
   - Specta
 
 SPEC REPOS:
@@ -23,9 +27,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   SDWebImage: 56bfe1114b11f1d5766d6d0e3b3456cfd7e1e8b7
-  SDWebImageBPGCoder: c35c3aa83b6dd86a63e3fb013a29a2db6b4a77c3
+  SDWebImageBPGCoder: a3ddd51d37aeed8116f272d280441e03af4c171a
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
-PODFILE CHECKSUM: 2175744386f7a924ca415e90b59e6cf33d634c7f
+PODFILE CHECKSUM: 0f81121cdc589dfdeb358147154e6bd7e7bcbd4f
 
 COCOAPODS: 1.5.3
