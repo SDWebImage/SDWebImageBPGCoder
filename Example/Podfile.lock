@@ -1,7 +1,7 @@
 PODS:
   - Expecta (1.0.6)
   - SDWebImage/Core (5.0.0-beta4)
-  - SDWebImageBPGCoder (0.2.1):
+  - SDWebImageBPGCoder (0.2.2):
     - SDWebImage/Core (>= 5.0.0-beta4)
   - Specta (1.0.7)
 
@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   SDWebImage: 56bfe1114b11f1d5766d6d0e3b3456cfd7e1e8b7
-  SDWebImageBPGCoder: 60038a4c7df995ee39a9cc4d61e7050984f8750d
+  SDWebImageBPGCoder: b479ed252aa19b2a3c5a38e274e078c6f3607e20
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: 2175744386f7a924ca415e90b59e6cf33d634c7f
