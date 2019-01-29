@@ -1,1 +1,2 @@
 github "SDWebImage/SDWebImage" >= 5.0.0-beta4
+github "SDWebImage/libbpg-Xcode" ~>0.9.8

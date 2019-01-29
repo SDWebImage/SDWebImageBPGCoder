@@ -30,7 +30,7 @@ pod 'SDWebImageBPGCoder'
 
 #### Carthage
 
-SDWebImageBPGCoder is available through [Carthage](https://github.com/Carthage/Carthage).
+SDWebImageBPGCoder is available through [Carthage](https://github.com/Carthage/Carthage). Which use libbpg as dynamic framework.
 
 ```
 github "SDWebImage/SDWebImageBPGCoder"
