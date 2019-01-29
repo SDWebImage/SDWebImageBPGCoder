@@ -39,7 +39,7 @@ typedef struct {
     BPGColorSpaceEnum color_space;
     uint8_t bit_depth;
     uint8_t pixel_shift; /* (1 << pixel_shift) bytes per pixel */
-    uint8_t *data[4];
+    uint8_t *data[4]; /* GBRA when use BPG_CS_RGB */
     int linesize[4];
 } BPGImage;
 
@@ -150,7 +150,9 @@ int bpg_encoder_set_frame_duration(BPGEncoderContext *s, int frame_ticks);
 void bpg_encoder_set_extension_data(BPGEncoderContext *s,
                                     BPGMetaData *md);
 
-/* Return 0 if 0K, < 0 if error */
+/* Return 0 if 0K, < 0 if error.
+ Warning: currently 'img' is modified. When encoding animations, img
+ = NULL indicates the end of the stream. */
 int bpg_encoder_encode(BPGEncoderContext *s, BPGImage *img,
                        BPGEncoderWriteFunc *write_func,
                        void *opaque);

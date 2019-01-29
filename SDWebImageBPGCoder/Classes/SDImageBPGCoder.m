@@ -34,7 +34,7 @@ static int WriteImageData(void *opaque, const uint8_t *buf, int buf_len) {
 }
 
 static void FillRGBABufferWithBPGImage(vImage_Buffer *red, vImage_Buffer *green, vImage_Buffer *blue, vImage_Buffer *alpha, BPGImage *img) {
-    // libbpg RGB coder format order is GBR/GBRA
+    // libbpg RGB color format order is GBR/GBRA
     red->width = img->w;
     red->height = img->h;
     red->data = img->data[2];
