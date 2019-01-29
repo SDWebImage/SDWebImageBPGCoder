@@ -6,7 +6,11 @@
 //
 
 #import "SDImageBPGCoder.h"
+#if __has_include(<libbpg/libbpg.h>)
+#import <libbpg/libbpg.h>
+#else
 #import "libbpg.h"
+#endif
 
 #define SD_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
 
