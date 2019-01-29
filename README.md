@@ -6,11 +6,11 @@
 [![Platform](https://img.shields.io/cocoapods/p/SDWebImageBPGCoder.svg?style=flat)](http://cocoapods.org/pods/SDWebImageBPGCoder)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SDWebImage/SDWebImageBPGCoder)
 
-## Example
+## What's for
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+This is a [SDWebImage](https://github.com/SDWebImage/SDWebImage) coder plugin to add [BPG Image Format](https://bellard.org/bpg/) support. Which is built based on the open-sourced [libbpg](https://github.com/mirrorer/libbpg) codec.
 
-This is a demo to show to build custom decoder for SDWebImage by embedding third-party framework.
+This BPG coder plugin currently support static BPG and animated BPG image decoding.
 
 ## Requirements
 
