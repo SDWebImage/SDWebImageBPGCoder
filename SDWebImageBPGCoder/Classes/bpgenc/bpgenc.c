@@ -325,7 +325,7 @@ Image *image_alloc(int w, int h, BPGImageFormatEnum format, int has_alpha,
     size = (uint64_t)w * (uint64_t)h * 2;
     if (size > INT32_MAX) {
         fprintf(stderr, "Image is too large\n");
-        exit(1);
+        return NULL;
     }
     
     img = malloc(sizeof(Image));
@@ -1307,7 +1307,7 @@ static int bpg_encoder_encode_trailer(BPGEncoderContext *s,
     out_buf_len = s->encoder->close(s->enc_ctx, &out_buf);
     if (out_buf_len < 0) {
         fprintf(stderr, "Error while encoding picture\n");
-        exit(1);
+        return -1;
     }
     s->enc_ctx = NULL;
     
@@ -1317,7 +1317,7 @@ static int bpg_encoder_encode_trailer(BPGEncoderContext *s,
         alpha_buf_len = s->encoder->close(s->alpha_enc_ctx, &alpha_buf);
         if (alpha_buf_len < 0) {
             fprintf(stderr, "Error while encoding picture (alpha plane)\n");
-            exit(1);
+            return -1;
         }
         s->alpha_enc_ctx = NULL;
     }
@@ -1328,14 +1328,14 @@ static int bpg_encoder_encode_trailer(BPGEncoderContext *s,
                                        s->frame_duration_tab, s->frame_count);
     if (hevc_buf_len < 0) {
         fprintf(stderr, "Error while creating HEVC data\n");
-        exit(1);
+        return -1;
     }
     free(out_buf);
     free(alpha_buf);
     
     if (write_func(opaque, hevc_buf, hevc_buf_len) != hevc_buf_len) {
         fprintf(stderr, "Error while writing HEVC data\n");
-        exit(1);
+        return -1;
     }
     free(hevc_buf);
     return 0;
@@ -1407,7 +1407,7 @@ int bpg_encoder_encode(BPGEncoderContext *s, Image *img,
             if (image_ycc444_to_ycc422(img, c_h_phase) != 0)  {
             error_convert:
                 fprintf(stderr, "Cannot convert image\n");
-                exit(1);
+                return -1;
             }
         }
     }
@@ -1444,7 +1444,7 @@ int bpg_encoder_encode(BPGEncoderContext *s, Image *img,
         s->enc_ctx = s->encoder->open(ep);
         if (!s->enc_ctx) {
             fprintf(stderr, "Error while opening encoder\n");
-            exit(1);
+            return -1;
         }
         
         if (img_alpha) {
@@ -1457,7 +1457,7 @@ int bpg_encoder_encode(BPGEncoderContext *s, Image *img,
             s->alpha_enc_ctx = s->encoder->open(ep);
             if (!s->alpha_enc_ctx) {
                 fprintf(stderr, "Error while opening alpha encoder\n");
-                exit(1);
+                return -1;
             }
         }
         
@@ -1555,7 +1555,7 @@ int bpg_encoder_encode(BPGEncoderContext *s, Image *img,
             if (has_extension) {
                 if (write_func(opaque, extension_buf, extension_buf_len) != extension_buf_len) {
                     fprintf(stderr, "Error while writing extension data\n");
-                    exit(1);
+                    return -1;
                 }
                 free(extension_buf);
             }
