@@ -31,12 +31,32 @@ TODO: Add long description of the pod here.
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
-  s.source_files = 'SDWebImageBPGCoder/Classes/**/*', 'Vendor/libbpg/include/libbpg.h', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h'
+  s.default_subspecs = 'libbpg'
   s.module_map = 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.modulemap'
-  s.public_header_files = 'SDWebImageBPGCoder/Classes/**/*.h', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h'
-  s.osx.vendored_libraries = 'Vendor/libbpg/lib/mac/libbpg.a'
-  s.ios.vendored_libraries = 'Vendor/libbpg/lib/ios/libbpg.a'
-  s.tvos.vendored_libraries = 'Vendor/libbpg/lib/tvos/libbpg.a'
-  s.watchos.vendored_libraries = 'Vendor/libbpg/lib/watchos/libbpg.a'
+
+  s.subspec 'libbpg' do |ss|
+    ss.source_files = 'SDWebImageBPGCoder/Classes/SDImageBPGCoder.{h,m}', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h', 'Vendor/libbpg/include/libbpg.h'
+    ss.public_header_files = 'SDWebImageBPGCoder/Classes/SDImageBPGCoder.h', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h', 'Vendor/libbpg/include/libbpg.h'
+    ss.osx.vendored_libraries = 'Vendor/libbpg/lib/mac/libbpg.a'
+    ss.ios.vendored_libraries = 'Vendor/libbpg/lib/ios/libbpg.a'
+    ss.tvos.vendored_libraries = 'Vendor/libbpg/lib/tvos/libbpg.a'
+    ss.watchos.vendored_libraries = 'Vendor/libbpg/lib/watchos/libbpg.a'
+  end
+
+  s.subspec 'bpgenc' do |ss|
+    ss.dependency 'SDWebImageBPGCoder/libbpg'
+    ss.source_files = 'SDWebImageBPGCoder/Classes/bpgenc/*', 'Vendor/libx265/include/x265.h', 'Vendor/libx265/include/x265_config.h'
+    ss.public_header_files = 'SDWebImageBPGCoder/Classes/bpgenc/*.h'
+    ss.xcconfig = {
+      'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) USE_X265=1',
+      'WARNING_CFLAGS' => '$(inherited) -Wno-shorten-64-to-32 -Wno-conditional-uninitialized -Wno-unused-variable'
+    }
+    ss.osx.vendored_libraries = 'Vendor/libx265/lib/mac/libx265.a'
+    ss.ios.vendored_libraries = 'Vendor/libx265/lib/ios/libx265.a'
+    ss.tvos.vendored_libraries = 'Vendor/libx265/lib/tvos/libx265.a'
+    ss.watchos.vendored_libraries = 'Vendor/libx265/lib/watchos/libx265.a'
+    ss.libraries = 'c++'
+  end
+
   s.dependency 'SDWebImage/Core', '>= 5.0.0-beta4'
 end

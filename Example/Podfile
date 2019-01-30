@@ -2,7 +2,10 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'SDWebImageBPGCoder_Example' do
-  pod 'SDWebImageBPGCoder', :path => '../'
+  pod 'SDWebImageBPGCoder', :path => '../', :subspecs => [
+  	'libbpg',
+  	'bpgenc'
+  ]
 
   target 'SDWebImageBPGCoder_Tests' do
     inherit! :search_paths

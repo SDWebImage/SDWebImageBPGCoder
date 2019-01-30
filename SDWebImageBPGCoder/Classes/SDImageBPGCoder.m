@@ -12,11 +12,52 @@
 #import "libbpg.h"
 #endif
 
+#if defined(USE_X265)
+#import "bpgenc.h"
+#import <Accelerate/Accelerate.h>
+#endif
+
 #define SD_FOUR_CC(c1,c2,c3,c4) ((uint32_t)(((c4) << 24) | ((c3) << 16) | ((c2) << 8) | (c1)))
 
 static void FreeImageData(void *info, const void *data, size_t size) {
     free((void *)data);
 }
+
+#if defined(USE_X265)
+static int WriteImageData(void *opaque, const uint8_t *buf, int buf_len) {
+    NSMutableData *imageData = (__bridge NSMutableData *)opaque;
+    NSCParameterAssert(imageData);
+    NSCParameterAssert(buf);
+    
+    [imageData appendBytes:buf length:buf_len];
+    return buf_len;
+}
+
+static void FillRGBABufferWithBPGImage(vImage_Buffer *red, vImage_Buffer *green, vImage_Buffer *blue, vImage_Buffer *alpha, BPGImage *img) {
+    // libbpg RGB color format order is GBR/GBRA
+    red->width = img->w;
+    red->height = img->h;
+    red->data = img->data[2];
+    red->rowBytes = img->linesize[2];
+    
+    green->width = img->w;
+    green->height = img->h;
+    green->data = img->data[0];
+    green->rowBytes = img->linesize[0];
+    
+    blue->width = img->w;
+    blue->height = img->h;
+    blue->data = img->data[1];
+    blue->rowBytes = img->linesize[1];
+    
+    if (img->has_alpha) {
+        alpha->width = img->w;
+        alpha->height = img->h;
+        alpha->data = img->data[3];
+        alpha->rowBytes = img->linesize[3];
+    }
+}
+#endif
 
 @implementation SDImageBPGCoder
 
@@ -128,12 +169,194 @@ static void FreeImageData(void *info, const void *data, size_t size) {
 
 #pragma mark - Encode
 - (BOOL)canEncodeToFormat:(SDImageFormat)format {
+    if (format == SDImageFormatBPG) {
+#if defined(USE_X265)
+        return YES;
+#else
+        return NO;
+#endif
+    }
     return NO;
 }
 
 - (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format options:(SDImageCoderOptions *)options {
+#if defined(USE_X265)
+    double compressionQuality = 1;
+    if (options[SDImageCoderEncodeCompressionQuality]) {
+        compressionQuality = [options[SDImageCoderEncodeCompressionQuality] doubleValue];
+    }
+    BOOL encodeFirstFrame = [options[SDImageCoderEncodeFirstFrameOnly] boolValue];
+    
+    return [self sd_encodedBPGDataWithImage:image quality:compressionQuality encodeFirstFrame:encodeFirstFrame];
+#else
     return nil;
+#endif
 }
+
+#if defined(USE_X265)
+- (nullable NSData *)sd_encodedBPGDataWithImage:(nonnull UIImage *)image quality:(double)quality encodeFirstFrame:(BOOL)encodeFirstFrame {
+    BPGEncoderContext *enc_ctx;
+    BPGEncoderParameters *p;
+    p = bpg_encoder_param_alloc();
+    if (!p) {
+        return nil;
+    }
+    // BPG quality is from [0-51], 0 means the best quality but the biggest size. But we define 1.0 the best qualiy, 0.0 the smallest size.
+    p->qp = (1 - quality) * 51;
+    
+    NSArray<SDImageFrame *> *frames = [SDImageCoderHelper framesFromAnimatedImage:image];
+    NSMutableData *mutableData = [NSMutableData data];
+    
+    if (encodeFirstFrame || frames.count == 0) {
+        // for static BPG image
+        enc_ctx = bpg_encoder_open(p);
+        if (!enc_ctx) {
+            bpg_encoder_param_free(p);
+            return nil;
+        }
+        
+        BPGImage *img = [self sd_encodedBPGFrameWithImage:image];
+        if (!img) {
+            bpg_encoder_close(enc_ctx);
+            bpg_encoder_param_free(p);
+            return nil;
+        }
+        bpg_encoder_encode(enc_ctx, img, WriteImageData, (__bridge void *)mutableData);
+        bpg_image_free(img);
+    } else {
+        // for aniated BPG image
+        p->animated = 1;
+        
+        enc_ctx = bpg_encoder_open(p);
+        if (!enc_ctx) {
+            bpg_encoder_param_free(p);
+            return nil;
+        }
+        
+        for (size_t i = 0; i < frames.count; i++) {
+            @autoreleasepool {
+                SDImageFrame *currentFrame = frames[i];
+                
+                BPGImage *img = [self sd_encodedBPGFrameWithImage:currentFrame.image];
+                if (!img) {
+                    bpg_encoder_close(enc_ctx);
+                    bpg_encoder_param_free(p);
+                    return nil;
+                }
+                // libbpg calculate the frame duration like this: seconds = frame_delay_num / frame_delay_den * frame_ticks
+                int frame_ticks = currentFrame.duration * p->frame_delay_den / p->frame_delay_num;
+                bpg_encoder_set_frame_duration(enc_ctx, frame_ticks);
+                bpg_encoder_encode(enc_ctx, img, WriteImageData, (__bridge void *)mutableData);
+                bpg_image_free(img);
+            }
+        }
+        // When encoding animations, img = NULL indicates the end of the stream
+        bpg_encoder_encode(enc_ctx, NULL, WriteImageData, (__bridge void *)mutableData);
+    }
+    
+    bpg_encoder_close(enc_ctx);
+    bpg_encoder_param_free(p);
+    
+    
+    return [mutableData copy];
+}
+
+
+- (BPGImage *)sd_encodedBPGFrameWithImage:(nonnull UIImage *)image {
+    CGImageRef imageRef = image.CGImage;
+    if (!imageRef) {
+        return nil;
+    }
+    
+    BPGImageFormatEnum format = BPG_FORMAT_444;
+    BPGColorSpaceEnum color_space = BPG_CS_RGB;
+    
+    size_t width = CGImageGetWidth(imageRef);
+    size_t height = CGImageGetHeight(imageRef);
+    size_t bytesPerRow = CGImageGetBytesPerRow(imageRef);
+    size_t bitsPerPixel = CGImageGetBitsPerPixel(imageRef);
+    size_t bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
+    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+    CGImageAlphaInfo alphaInfo = bitmapInfo & kCGBitmapAlphaInfoMask;
+    CGBitmapInfo byteOrderInfo = bitmapInfo & kCGBitmapByteOrderMask;
+    BOOL hasAlpha = !(alphaInfo == kCGImageAlphaNone ||
+                      alphaInfo == kCGImageAlphaNoneSkipFirst ||
+                      alphaInfo == kCGImageAlphaNoneSkipLast);
+    BOOL byteOrderNormal = NO;
+    switch (byteOrderInfo) {
+        case kCGBitmapByteOrderDefault: {
+            byteOrderNormal = YES;
+        } break;
+        case kCGBitmapByteOrder32Little: {
+        } break;
+        case kCGBitmapByteOrder32Big: {
+            byteOrderNormal = YES;
+        } break;
+        default: break;
+    }
+    
+    // libbpg supports 4 Planr16 channel for RGBA (BPGImage->data[4], which actually store uint16_t not uint8_t)
+    // Actually, we can optimize to use RGB888 and convert into Planr16. However, since vImage is fast on GPU, use the built-in method (vImageConvert_RGB16UtoPlanar16U) can boost encoding time.
+    vImageConverterRef convertor = NULL;
+    vImage_Error v_error = kvImageNoError;
+    
+    vImage_CGImageFormat srcFormat = {
+        .bitsPerComponent = (uint32_t)bitsPerComponent,
+        .bitsPerPixel = (uint32_t)bitsPerPixel,
+        .colorSpace = CGImageGetColorSpace(imageRef),
+        .bitmapInfo = bitmapInfo
+    };
+    vImage_CGImageFormat destFormat = {
+        .bitsPerComponent = 16,
+        .bitsPerPixel = hasAlpha ? 64 : 48,
+        .colorSpace = [SDImageCoderHelper colorSpaceGetDeviceRGB],
+        .bitmapInfo = hasAlpha ? kCGImageAlphaFirst | kCGBitmapByteOrderDefault : kCGImageAlphaNone | kCGBitmapByteOrderDefault // RGB16U/ARGB16U (Non-premultiplied to works for libbpg)
+    };
+    
+    convertor = vImageConverter_CreateWithCGImageFormat(&srcFormat, &destFormat, NULL, kvImageNoFlags, &v_error);
+    if (v_error != kvImageNoError) {
+        return nil;
+    }
+    
+    vImage_Buffer src;
+    v_error = vImageBuffer_InitWithCGImage(&src, &srcFormat, NULL, imageRef, kvImageNoFlags);
+    if (v_error != kvImageNoError) {
+        return nil;
+    }
+    vImage_Buffer dest;
+    vImageBuffer_Init(&dest, height, width, hasAlpha ? 64 : 48, kvImageNoFlags);
+    if (!dest.data) {
+        free(src.data);
+        return nil;
+    }
+    
+    // Convert input color mode to RGB16U/ARGB16U
+    v_error = vImageConvert_AnyToAny(convertor, &src, &dest, NULL, kvImageNoFlags);
+    free(src.data);
+    vImageConverter_Release(convertor);
+    if (v_error != kvImageNoError) {
+        free(dest.data);
+        return nil;
+    }
+    
+    BPGImage *img = bpg_image_alloc((int)width, (int)height, format, hasAlpha, color_space, (int)bitsPerComponent);
+    
+    vImage_Buffer red, green, blue, alpha;
+    FillRGBABufferWithBPGImage(&red, &green, &blue, &alpha, img);
+    
+    if (hasAlpha) {
+        v_error = vImageConvert_ARGB16UtoPlanar16U(&dest, &alpha, &red, &green, &blue, kvImageNoFlags);
+    } else {
+        v_error = vImageConvert_RGB16UtoPlanar16U(&dest, &red, &green, &blue, kvImageNoFlags);
+    }
+    free(dest.data);
+    if (v_error != kvImageNoError) {
+        return nil;
+    }
+    
+    return img;
+}
+#endif
 
 // libbpg currently does not fully support progressive decoding (alpha-only and contains issue), this does not be compatible with `SDProgressiveImageCoder` protocol
 
