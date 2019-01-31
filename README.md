@@ -10,7 +10,7 @@
 
 This is a [SDWebImage](https://github.com/SDWebImage/SDWebImage) coder plugin to add [BPG Image Format](https://bellard.org/bpg/) support. Which is built based on the open-sourced [libbpg](https://github.com/mirrorer/libbpg) codec.
 
-This BPG coder plugin currently support static BPG and animated BPG image decoding.
+This BPG coder plugin support static BPG and animated BPG image decoding. It also include an optional codec based on the `bpgenc` to support static BPG and animated BPG encoding.
 
 ## Requirements
 
@@ -30,9 +30,27 @@ it, simply add the following line to your Podfile:
 pod 'SDWebImageBPGCoder'
 ```
 
+SDWebImageBPGCoder contains subspecs `libbpg` & `bpgenc`. Which integrate the codec plugin for libbpg and custom bpgenc to support BPG image decoding/encoding.
+
+To enable BPG decoding, you should add `libbpg` subspec:
+
+```ruby
+pod 'SDWebImageBPGCoder/libbpg'
+```
+
+To enable BPG encoding, you should add `bpgenc` subspec:
+
+```ruby
+pod 'SDWebImageBPGCoder/bpgenc'
+```
+
+By default will contains only `libbpg` subspec for most people's usage. Using `bpgenc` encoding subspec only if you want BPG encoding.
+
 #### Carthage
 
 SDWebImageBPGCoder is available through [Carthage](https://github.com/Carthage/Carthage). Which use libbpg as dynamic framework.
+
+Carthage does not support like CocoaPods' subspec, since most of user use BPG decoding without x265 library. The framework through Carthage only supports libbpg for BPG decoding.
 
 ```
 github "SDWebImage/SDWebImageBPGCoder"
@@ -60,6 +78,22 @@ let imageView: UIImageView
 imageView.sd_setImage(with: url)
 ```
 
+`SDWebImageBPGCoder` also support BPG encoding (need bpgenc subspec). You can encode `UIImage` to BPG compressed image data.
+
++ Objective-C
+
+```objectivec
+UIImage *image;
+NSData *imageData = [image sd_imageDataAsFormat:SDImageFormatBPG];
+```
+
++ Swift
+
+```swift
+let image;
+let imageData = image.sd_imageData(as: .BPG)
+```
+
 ## Screenshot
 
 <img src="https://raw.githubusercontent.com/SDWebImage/SDWebImageBPGCoder/master/Example/Screenshot/BPGDemo.png" width="300" />
@@ -77,5 +111,7 @@ DreamPiggy
 ## License
 
 SDWebImageBPGCoder is available under the MIT license. See the LICENSE file for more info.
+
+However, when using `bpgenc`, the license will be subject to GPL licence (or commercial licence if you have one). Because we use x265, and use a modified version of `bpgenc` (which is GPL). Check [x265.org](http://x265.org/) and [libbpg](https://github.com/mirrorer/libbpg) for more information.
 
 
