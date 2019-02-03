@@ -45,17 +45,13 @@ TODO: Add long description of the pod here.
 
   s.subspec 'bpgenc' do |ss|
     ss.dependency 'SDWebImageBPGCoder/libbpg'
-    ss.source_files = 'SDWebImageBPGCoder/Classes/bpgenc/*', 'Vendor/libx265/include/x265.h', 'Vendor/libx265/include/x265_config.h'
+    ss.dependency 'libx265'
+    ss.source_files = 'SDWebImageBPGCoder/Classes/bpgenc/*'
     ss.public_header_files = 'SDWebImageBPGCoder/Classes/bpgenc/*.h'
     ss.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) USE_X265=1',
       'WARNING_CFLAGS' => '$(inherited) -Wno-shorten-64-to-32 -Wno-conditional-uninitialized -Wno-unused-variable'
     }
-    ss.osx.vendored_libraries = 'Vendor/libx265/lib/mac/libx265.a'
-    ss.ios.vendored_libraries = 'Vendor/libx265/lib/ios/libx265.a'
-    ss.tvos.vendored_libraries = 'Vendor/libx265/lib/tvos/libx265.a'
-    ss.watchos.vendored_libraries = 'Vendor/libx265/lib/watchos/libx265.a'
-    ss.libraries = 'c++'
   end
 
   s.dependency 'SDWebImage/Core', '>= 5.0.0-beta4'
