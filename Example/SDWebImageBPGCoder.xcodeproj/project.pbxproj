@@ -304,7 +304,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageBPGCoder_Tests/Pods-SDWebImageBPGCoder_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImageBPGCoder_Tests/Pods-SDWebImageBPGCoder_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
 				"${BUILT_PRODUCTS_DIR}/Specta/Specta.framework",
 			);
@@ -315,7 +315,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageBPGCoder_Tests/Pods-SDWebImageBPGCoder_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImageBPGCoder_Tests/Pods-SDWebImageBPGCoder_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A405C467D52955920532A2E2 /* [CP] Embed Pods Frameworks */ = {
@@ -324,20 +324,22 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageBPGCoder_Example/Pods-SDWebImageBPGCoder_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SDWebImageBPGCoder_Example/Pods-SDWebImageBPGCoder_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImageBPGCoder/SDWebImageBPGCoder.framework",
+				"${BUILT_PRODUCTS_DIR}/libbpg/libbpg.framework",
 				"${BUILT_PRODUCTS_DIR}/libx265/libx265.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImageBPGCoder.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libbpg.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libx265.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDWebImageBPGCoder_Example/Pods-SDWebImageBPGCoder_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDWebImageBPGCoder_Example/Pods-SDWebImageBPGCoder_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A682DAA5F0DD701CB2D76B90 /* [CP] Check Pods Manifest.lock */ = {
