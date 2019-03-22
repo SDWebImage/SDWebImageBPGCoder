@@ -10,7 +10,6 @@
 #endif
 
 #import <SDWebImageBPGCoder/SDImageBPGCoder.h>
-#import <SDWebImageBPGCoder/libbpg.h>
 #if defined(USE_X265)
 #import <SDWebImageBPGCoder/bpgenc.h>
 #endif

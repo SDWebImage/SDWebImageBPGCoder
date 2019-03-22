@@ -35,12 +35,9 @@ TODO: Add long description of the pod here.
   s.module_map = 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.modulemap'
 
   s.subspec 'libbpg' do |ss|
-    ss.source_files = 'SDWebImageBPGCoder/Classes/SDImageBPGCoder.{h,m}', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h', 'Vendor/libbpg/include/libbpg.h'
-    ss.public_header_files = 'SDWebImageBPGCoder/Classes/SDImageBPGCoder.h', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h', 'Vendor/libbpg/include/libbpg.h'
-    ss.osx.vendored_libraries = 'Vendor/libbpg/lib/mac/libbpg.a'
-    ss.ios.vendored_libraries = 'Vendor/libbpg/lib/ios/libbpg.a'
-    ss.tvos.vendored_libraries = 'Vendor/libbpg/lib/tvos/libbpg.a'
-    ss.watchos.vendored_libraries = 'Vendor/libbpg/lib/watchos/libbpg.a'
+    ss.dependency 'libbpg'
+    ss.source_files = 'SDWebImageBPGCoder/Classes/SDImageBPGCoder.{h,m}', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h'
+    ss.public_header_files = 'SDWebImageBPGCoder/Classes/SDImageBPGCoder.h', 'SDWebImageBPGCoder/Module/SDWebImageBPGCoder.h'
   end
 
   s.subspec 'bpgenc' do |ss|

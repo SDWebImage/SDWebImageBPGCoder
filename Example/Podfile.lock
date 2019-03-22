@@ -1,5 +1,6 @@
 PODS:
   - Expecta (1.0.6)
+  - libbpg (0.9.8)
   - libx265 (3.0):
     - libx265/common (= 3.0)
     - libx265/core (= 3.0)
@@ -23,11 +24,12 @@ PODS:
     - libx265/input
     - libx265/output
   - SDWebImage/Core (5.0.0-beta5)
-  - SDWebImageBPGCoder/bpgenc (0.4.0):
+  - SDWebImageBPGCoder/bpgenc (0.5.0):
     - libx265
     - SDWebImage/Core (>= 5.0.0-beta4)
     - SDWebImageBPGCoder/libbpg
-  - SDWebImageBPGCoder/libbpg (0.4.0):
+  - SDWebImageBPGCoder/libbpg (0.5.0):
+    - libbpg
     - SDWebImage/Core (>= 5.0.0-beta4)
   - Specta (1.0.7)
 
@@ -40,6 +42,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Expecta
+    - libbpg
     - libx265
     - SDWebImage
     - Specta
@@ -50,11 +53,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
+  libbpg: 0d5101762d34398ef336a0c79f4ad3f84b1417c1
   libx265: 23ab716aae3eff1e6b68b3db6ace8883867691c4
   SDWebImage: fd609df53c0f55fdcd4705bd14c01c9d5c348d0c
-  SDWebImageBPGCoder: 3c1d498041a124ed49453da4108957342ff04a03
+  SDWebImageBPGCoder: 7656350098535556e450a1ee05dbdf24ccee1a13
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
 
 PODFILE CHECKSUM: 0f81121cdc589dfdeb358147154e6bd7e7bcbd4f
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1
