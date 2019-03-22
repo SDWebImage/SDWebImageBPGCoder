@@ -25,7 +25,11 @@
 #ifndef _BPGENC_H
 #define _BPGENC_H
     
-#include "libbpg.h"
+#if __has_include(<libbpg/libbpg.h>)
+#import <libbpg/libbpg.h>
+#else
+#import "libbpg.h"
+#endif
 
 typedef struct {
     int w, h;
