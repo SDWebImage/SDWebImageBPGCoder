@@ -51,5 +51,5 @@ TODO: Add long description of the pod here.
     }
   end
 
-  s.dependency 'SDWebImage/Core', '>= 5.0.0-beta4'
+  s.dependency 'SDWebImage/Core', '~> 5.0'
 end
