@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.4
+osx_image: xcode11.2
 
 env:
   global:
@@ -15,10 +15,9 @@ notifications:
 before_install:
   - env
   - locale
-  - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-  - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  - gem install cocoapods --no-document --quiet
+  - gem install xcpretty --no-document --quiet
   - pod --version
-  - pod setup --silent > /dev/null
   - pod repo update --silent
   - xcpretty --version
   - xcodebuild -version
@@ -28,8 +27,10 @@ script:
   - set -o pipefail
 
   - echo Check if the library described by the podspec can be built
-  - pod lib lint --allow-warnings
+  # Run full subspecs linting consuming too much of build time because CocoaPods use source code of Pods
+  # Since`libx265` && `libde265` is Pod and have their own linting, don't waste time to lint full subspecs combination
+  - pod lib lint --use-libraries --allow-warnings --no-subspecs --fail-fast
 
   - echo Build example
   - pod install --project-directory=Example
-  - xcodebuild build -workspace Example/SDWebImageBPGCoder.xcworkspace -scheme SDWebImageBPGCoder-Example -sdk iphonesimulator -destination 'name=iPhone 6s' -configuration Debug | xcpretty -c
+  - xcodebuild build -workspace Example/SDWebImageBPGCoder.xcworkspace -scheme 'SDWebImageBPGCoder-Example' -destination 'name=iPhone 11 Pro' -configuration Debug | xcpretty -c
