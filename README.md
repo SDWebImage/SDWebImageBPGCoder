@@ -14,8 +14,8 @@ This BPG coder plugin support static BPG and animated BPG image decoding. It als
 
 ## Requirements
 
-+ iOS 8.0
-+ macOS 10.10
++ iOS 9.0
++ macOS 10.11
 + tvOS 9.0
 + watchOS 2.0
 
