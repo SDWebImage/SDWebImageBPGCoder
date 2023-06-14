@@ -91,21 +91,42 @@ static void FillRGBABufferWithBPGImage(vImage_Buffer *red, vImage_Buffer *green,
     if (result < 0) {
         return nil;
     }
+    uint32_t width = info.width;
+    uint32_t height = info.height;
     
     BOOL hasAnimation = info.has_animation;
     BOOL decodeFirstFrame = [[options valueForKey:SDImageCoderDecodeFirstFrameOnly] boolValue];
     CGFloat scale = 1;
-    if ([options valueForKey:SDImageCoderDecodeScaleFactor]) {
-        scale = [[options valueForKey:SDImageCoderDecodeScaleFactor] doubleValue];
+    NSNumber *scaleFactor = options[SDImageCoderDecodeScaleFactor];
+    if (scaleFactor != nil) {
+        scale = [scaleFactor doubleValue];
         if (scale < 1) {
             scale = 1;
         }
     }
+    CGSize thumbnailSize = CGSizeZero;
+    NSValue *thumbnailSizeValue = options[SDImageCoderDecodeThumbnailPixelSize];
+    if (thumbnailSizeValue != nil) {
+#if SD_MAC
+        thumbnailSize = thumbnailSizeValue.sizeValue;
+#else
+        thumbnailSize = thumbnailSizeValue.CGSizeValue;
+#endif
+    }
+    BOOL preserveAspectRatio = YES;
+    NSNumber *preserveAspectRatioValue = options[SDImageCoderDecodePreserveAspectRatio];
+    if (preserveAspectRatioValue != nil) {
+        preserveAspectRatio = preserveAspectRatioValue.boolValue;
+    }
+    CGSize scaledSize = [SDImageCoderHelper scaledSizeWithImageSize:CGSizeMake(width, height) scaleSize:thumbnailSize preserveAspectRatio:preserveAspectRatio shouldScaleUp:NO];
     if (!hasAnimation || decodeFirstFrame) {
-        CGImageRef imageRef = [self sd_createBPGImageWithData:data];
-        if (!imageRef) {
+        CGImageRef originImageRef = [self sd_createBPGImageWithData:data];
+        if (!originImageRef) {
             return nil;
         }
+        // TODO: optimization using vImageScale directly during transform
+        CGImageRef imageRef = [SDImageCoderHelper CGImageCreateScaled:originImageRef size:scaledSize];
+        CGImageRelease(originImageRef);
 #if SD_UIKIT || SD_WATCH
         UIImage *staticImage = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:UIImageOrientationUp];
 #else
