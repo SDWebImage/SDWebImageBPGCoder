@@ -202,20 +202,36 @@ static void FillRGBABufferWithBPGImage(vImage_Buffer *red, vImage_Buffer *green,
 
 - (NSData *)encodedDataWithImage:(UIImage *)image format:(SDImageFormat)format options:(SDImageCoderOptions *)options {
 #if defined(USE_X265)
+    NSArray<SDImageFrame *> *frames = [SDImageCoderHelper framesFromAnimatedImage:image];
+    if (!frames || frames.count == 0) {
+        SDImageFrame *frame = [SDImageFrame frameWithImage:image duration:0];
+        frames = @[frame];
+    }
+    return [self encodedDataWithFrames:frames loopCount:image.sd_imageLoopCount format:format options:options];
+#else
+    return nil;
+#endif
+}
+
+- (NSData *)encodedDataWithFrames:(NSArray<SDImageFrame *> *)frames loopCount:(NSUInteger)loopCount format:(SDImageFormat)format options:(SDImageCoderOptions *)options {
+#if defined(USE_X265)
     double compressionQuality = 1;
     if (options[SDImageCoderEncodeCompressionQuality]) {
         compressionQuality = [options[SDImageCoderEncodeCompressionQuality] doubleValue];
     }
     BOOL encodeFirstFrame = [options[SDImageCoderEncodeFirstFrameOnly] boolValue];
     
-    return [self sd_encodedBPGDataWithImage:image quality:compressionQuality encodeFirstFrame:encodeFirstFrame];
+    return [self sd_encodedBPGDataWithFrames:frames loopCount:loopCount quality:compressionQuality encodeFirstFrame:encodeFirstFrame];
 #else
     return nil;
 #endif
 }
 
 #if defined(USE_X265)
-- (nullable NSData *)sd_encodedBPGDataWithImage:(nonnull UIImage *)image quality:(double)quality encodeFirstFrame:(BOOL)encodeFirstFrame {
+- (nullable NSData *)sd_encodedBPGDataWithFrames:(NSArray<SDImageFrame *> *)frames loopCount:(NSUInteger)loopCount quality:(double)quality encodeFirstFrame:(BOOL)encodeFirstFrame {
+    if (frames.count == 0) {
+        return nil;
+    }
     BPGEncoderContext *enc_ctx;
     BPGEncoderParameters *p;
     p = bpg_encoder_param_alloc();
@@ -224,11 +240,11 @@ static void FillRGBABufferWithBPGImage(vImage_Buffer *red, vImage_Buffer *green,
     }
     // BPG quality is from [0-51], 0 means the best quality but the biggest size. But we define 1.0 the best qualiy, 0.0 the smallest size.
     p->qp = (1 - quality) * 51;
+    p->loop_count = loopCount;
     
-    NSArray<SDImageFrame *> *frames = [SDImageCoderHelper framesFromAnimatedImage:image];
     NSMutableData *mutableData = [NSMutableData data];
     
-    if (encodeFirstFrame || frames.count == 0) {
+    if (encodeFirstFrame || frames.count == 1) {
         // for static BPG image
         enc_ctx = bpg_encoder_open(p);
         if (!enc_ctx) {
@@ -236,7 +252,7 @@ static void FillRGBABufferWithBPGImage(vImage_Buffer *red, vImage_Buffer *green,
             return nil;
         }
         
-        BPGImage *img = [self sd_encodedBPGFrameWithImage:image];
+        BPGImage *img = [self sd_encodedBPGFrameWithImage:frames.firstObject.image];
         if (!img) {
             bpg_encoder_close(enc_ctx);
             bpg_encoder_param_free(p);
