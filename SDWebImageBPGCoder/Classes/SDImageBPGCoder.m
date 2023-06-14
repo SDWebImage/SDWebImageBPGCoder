@@ -432,7 +432,7 @@ static void FillRGBABufferWithBPGImage(vImage_Buffer *red, vImage_Buffer *green,
     size_t bitsPerPixel = hasAlpha ? 32 : 24;
     size_t bytesPerRow = width * bitsPerPixel / 8;
     size_t rgbaSize = height * bytesPerRow;
-    CGBitmapInfo bitmapInfo = kCGBitmapByteOrder32Big;
+    CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
     bitmapInfo |= hasAlpha ? kCGImageAlphaLast : kCGImageAlphaNone;
     
     uint8_t *rgba = malloc(rgbaSize);
